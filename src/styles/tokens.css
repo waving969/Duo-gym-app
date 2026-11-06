@@ -1,0 +1,92 @@
+:root {
+  color-scheme: dark light;
+
+  --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
+  --font-body: "Geist Variable", system-ui, -apple-system, sans-serif;
+
+  --radius-s: 10px;
+  --radius-m: 16px;
+  --radius-l: 24px;
+
+  --dock-height: 68px;
+  --gutter: 16px;
+
+  /* Tema oscuro (por defecto) */
+  --bg: #12110f;
+  --surface: #1c1a17;
+  --surface-2: #272420;
+  --line: #322e29;
+  --text: #f4f0e8;
+  --text-2: #b4ad9f;
+  --text-3: #8a8377;
+  --danger: #ff8b7e;
+  --on-accent: #15130f;
+  --shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+
+  --accent: #c6f135;
+  --accent-soft: rgb(198 241 53 / 0.14);
+}
+
+:root[data-accent="coral"] {
+  --accent: #ff8a66;
+  --accent-soft: rgb(255 138 102 / 0.16);
+}
+:root[data-accent="violeta"] {
+  --accent: #b79bff;
+  --accent-soft: rgb(183 155 255 / 0.16);
+}
+:root[data-accent="cielo"] {
+  --accent: #5cc8ff;
+  --accent-soft: rgb(92 200 255 / 0.16);
+}
+:root[data-accent="menta"] {
+  --accent: #4fe0b0;
+  --accent-soft: rgb(79 224 176 / 0.16);
+}
+
+[data-swatch="lima"] { --swatch: #c6f135; }
+[data-swatch="coral"] { --swatch: #ff8a66; }
+[data-swatch="violeta"] { --swatch: #b79bff; }
+[data-swatch="cielo"] { --swatch: #5cc8ff; }
+[data-swatch="menta"] { --swatch: #4fe0b0; }
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f3ec;
+    --surface: #fffdf8;
+    --surface-2: #efeae0;
+    --line: #e3dccf;
+    --text: #1d1b17;
+    --text-2: #5f594e;
+    --text-3: #7a7468;
+    --danger: #b3261e;
+    --on-accent: #ffffff;
+    --shadow: 0 12px 32px rgb(60 50 30 / 0.16);
+
+    --accent: #567000;
+    --accent-soft: rgb(86 112 0 / 0.12);
+  }
+
+  :root[data-accent="coral"] {
+    --accent: #c2410c;
+    --accent-soft: rgb(194 65 12 / 0.1);
+  }
+  :root[data-accent="violeta"] {
+    --accent: #6d48d6;
+    --accent-soft: rgb(109 72 214 / 0.1);
+  }
+  :root[data-accent="cielo"] {
+    --accent: #0a6fa8;
+    --accent-soft: rgb(10 111 168 / 0.1);
+  }
+  :root[data-accent="menta"] {
+    --accent: #0a7d5c;
+    --accent-soft: rgb(10 125 92 / 0.1);
+  }
+
+  [data-swatch="lima"] { --swatch: #567000; }
+  [data-swatch="coral"] { --swatch: #c2410c; }
+  [data-swatch="violeta"] { --swatch: #6d48d6; }
+  [data-swatch="cielo"] { --swatch: #0a6fa8; }
+  [data-swatch="menta"] { --swatch: #0a7d5c; }
+}
