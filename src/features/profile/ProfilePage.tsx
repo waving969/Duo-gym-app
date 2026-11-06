@@ -12,6 +12,7 @@ import { Sheet } from "../../ui/Sheet";
 import { useToast } from "../../ui/Toast";
 import { logout, useUpdateProfile, useUser } from "../auth/useMe";
 import { NotificationsCard } from "./NotificationsCard";
+import { ThemeCard } from "./ThemeCard";
 
 const ACCENT_NAMES = { lima: "Lima", coral: "Coral", violeta: "Violeta", cielo: "Cielo", menta: "Menta" } as const;
 
@@ -98,6 +99,8 @@ export function ProfilePage() {
         <h1 className="page__title">{user.displayName}</h1>
         <p className="page__subtitle">@{user.username}</p>
       </header>
+
+      <ThemeCard />
 
       <section className="card">
         <h2 className="card__title">Tu color</h2>

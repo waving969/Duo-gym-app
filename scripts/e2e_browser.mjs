@@ -256,6 +256,33 @@ for (const route of ["/entrenar", "/duo", "/progreso", "/progreso/ejercicios", "
   check(`sin scroll horizontal en ${route}`, o <= 0, String(o));
 }
 
+// Selector de tema
+const theme = () => p3.evaluate(() => ({ theme: document.documentElement.dataset.theme, bg: getComputedStyle(document.body).backgroundColor }));
+const DARK_BG = "rgb(18, 17, 15)";
+const LIGHT_BG = "rgb(246, 243, 236)";
+await p3.goto(`${BASE}/perfil`, { waitUntil: "networkidle0" });
+await wait(500);
+check("automático sigue al sistema (claro)", (await theme()).bg === LIGHT_BG);
+await clickText(p3, "Oscuro");
+check("Oscuro se aplica aunque el sistema esté en claro", (await theme()).bg === DARK_BG);
+await p3.screenshot({ path: `${OUT}21-tema.png` });
+await p3.reload({ waitUntil: "domcontentloaded" });
+check("Oscuro sigue activo al reabrir, antes de cargar la app", (await p3.evaluate(() => document.documentElement.dataset.theme)) === "dark");
+await wait(1500);
+await clickText(p3, "Claro");
+await p3.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "dark" }]);
+await wait(200);
+check("Claro se mantiene aunque el sistema esté en oscuro", (await theme()).bg === LIGHT_BG);
+await clickText(p3, "Automático");
+check("Automático vuelve a seguir al sistema", (await theme()).bg === DARK_BG);
+await p3.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "light" }]);
+await wait(200);
+check("Automático cambia solo cuando cambia el sistema", (await theme()).bg === LIGHT_BG);
+await clickText(p3, "Oscuro");
+await clickText(p3, "Cerrar sesión");
+await wait(1200);
+check("el tema se conserva al cerrar sesión", (await theme()).bg === DARK_BG);
+
 await browser.close();
 console.log(failed ? `HAY ${failed} FALLOS` : "TODO OK");
 process.exit(failed ? 1 : 0);

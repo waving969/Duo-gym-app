@@ -16,6 +16,7 @@ La hice para mi pareja y para mí al volver al gym: las apps de este tipo limita
 - **Rutinas personalizables:** incluye una rutina de aclimatación de 3 días y un catálogo de 855 ejercicios con nombres en español.
 - **Progreso:** calendario, rachas, evolución por ejercicio, cardio y peso corporal.
 - **Sesión persistente:** se entra una vez y la sesión se renueva sola al usar la app.
+- **Tema y color:** modo automático, claro u oscuro, y color propio para cada persona.
 
 ## Tecnología
 
