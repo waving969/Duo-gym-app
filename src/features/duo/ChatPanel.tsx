@@ -2,15 +2,18 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { toISODate } from "../../../shared/stats";
 import { LIMITS, NUDGES } from "../../../shared/types";
+import type { Partner } from "../../../shared/types";
 import { formatLongDate } from "../../lib/format";
 import { useOutboxCount } from "../../lib/outbox";
 import { useToday } from "../../lib/useToday";
+import { Avatar } from "../../ui/Avatar";
 import { useToast } from "../../ui/Toast";
 import { markRead, useMessages, useSendMessage } from "./useDuo";
 
 const time = new Intl.DateTimeFormat("es-ES", { hour: "2-digit", minute: "2-digit" });
 
-export function ChatPanel({ partnerName }: { partnerName: string }) {
+export function ChatPanel({ partner }: { partner: Partner }) {
+  const partnerName = partner.displayName;
   const { data: messages = [], isPending } = useMessages(true);
   const send = useSendMessage();
   const toast = useToast();
@@ -68,13 +71,16 @@ export function ChatPanel({ partnerName }: { partnerName: string }) {
                 {showDay && <p className="chat__day">{day === today ? "Hoy" : formatLongDate(day)}</p>}
                 {m.kind === "text" ? (
                   <motion.div
-                    className={`bubble ${m.fromMe ? "bubble--me" : ""}`}
+                    className={`bubble-row ${m.fromMe ? "bubble-row--me" : ""}`}
                     initial={{ opacity: 0, y: 10, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ type: "spring", stiffness: 480, damping: 32 }}
                   >
-                    <p>{m.body}</p>
-                    <time>{time.format(m.createdAt)}</time>
+                    {!m.fromMe && <Avatar avatar={partner.avatar} name={partnerName} accent={partner.accent} size={30} />}
+                    <div className={`bubble ${m.fromMe ? "bubble--me" : ""}`}>
+                      <p>{m.body}</p>
+                      <time>{time.format(m.createdAt)}</time>
+                    </div>
                   </motion.div>
                 ) : (
                   <motion.p

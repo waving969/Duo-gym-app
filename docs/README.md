@@ -22,6 +22,6 @@ Hechas con cuentas y datos ficticios.
 |---|---|---|
 | ![Entreno marcado sin cobertura](capturas/sesion-sin-cobertura.png) | ![Resumen al terminar](capturas/terminado.png) | ![Mensajes y toques](capturas/mensajes.png) |
 
-| Comparativa | Evolución de un ejercicio | Buscador de ejercicios |
+| Avatares | Comparativa | Evolución de un ejercicio |
 |---|---|---|
-| ![Comparativa entre dos personas](capturas/comparar.png) | ![Gráfica de evolución de un ejercicio](capturas/evolucion-ejercicio.png) | ![Buscador del catálogo](capturas/buscador-ejercicios.png) |
+| ![Selector de avatares con nombres de gym](capturas/avatares.png) | ![Comparativa entre dos personas](capturas/comparar.png) | ![Gráfica de evolución de un ejercicio](capturas/evolucion-ejercicio.png) |

@@ -78,6 +78,10 @@ Los 855 ejercicios no cambian, así que son un JSON de 150 KB que el service wor
 
 Los entrenos guardan una copia de los datos del ejercicio. Así el historial no cambia aunque se borre un ejercicio propio o cambie el catálogo.
 
+### Avatares como imágenes propias, no emojis del sistema
+
+Un emoji se ve distinto en cada móvil. Fluent Emoji da el mismo aspecto en todos, y 32 imágenes WebP ocupan unos 180 KB servidas desde la propia app. El servidor solo guarda el identificador y lo valida contra la lista.
+
 ### Pesos como enteros en gramos
 
 `72,4 kg` se guarda como `72400`, para evitar errores de redondeo con decimales.

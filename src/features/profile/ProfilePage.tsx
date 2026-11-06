@@ -1,9 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { avatarName } from "../../../shared/avatars";
 import { ACCENTS, LIMITS } from "../../../shared/types";
 import { api } from "../../lib/api";
 import { formatKg } from "../../lib/format";
+import { Avatar } from "../../ui/Avatar";
 import { Button } from "../../ui/Button";
 import { Toggle } from "../../ui/controls";
 import { Field, PasswordField } from "../../ui/Field";
@@ -11,6 +13,7 @@ import { CheckIcon, MinusIcon, PlusIcon } from "../../ui/icons";
 import { Sheet } from "../../ui/Sheet";
 import { useToast } from "../../ui/Toast";
 import { logout, useUpdateProfile, useUser } from "../auth/useMe";
+import { AvatarSheet } from "./AvatarSheet";
 import { NotificationsCard } from "./NotificationsCard";
 import { ThemeCard } from "./ThemeCard";
 
@@ -52,6 +55,7 @@ export function ProfilePage() {
   const user = useUser();
   const update = useUpdateProfile();
   const toast = useToast();
+  const [avatarOpen, setAvatarOpen] = useState(false);
   const [passwordOpen, setPasswordOpen] = useState(false);
   const [current, setCurrent] = useState("");
   const [next, setNext] = useState("");
@@ -95,9 +99,24 @@ export function ProfilePage() {
 
   return (
     <>
-      <header className="page__header">
-        <h1 className="page__title">{user.displayName}</h1>
-        <p className="page__subtitle">@{user.username}</p>
+      <header className="profile-head">
+        <motion.button
+          type="button"
+          className="profile-head__avatar"
+          aria-label="Cambiar avatar"
+          whileTap={{ scale: 0.93 }}
+          onClick={() => setAvatarOpen(true)}
+        >
+          <Avatar avatar={user.avatar} name={user.displayName} accent={user.accent} size={84} />
+          <span className="profile-head__edit" aria-hidden>
+            Cambiar
+          </span>
+        </motion.button>
+        <div className="profile-head__text">
+          <h1 className="page__title">{user.displayName}</h1>
+          <p className="page__subtitle">{avatarName(user.avatar) ?? "Toca para elegir tu avatar"}</p>
+          <p className="field__hint">@{user.username}</p>
+        </div>
       </header>
 
       <ThemeCard />
@@ -215,6 +234,8 @@ export function ProfilePage() {
           Cerrar sesión
         </Button>
       </section>
+
+      <AvatarSheet user={user} open={avatarOpen} onClose={() => setAvatarOpen(false)} />
 
       <Sheet open={passwordOpen} title="Cambiar contraseña" onClose={() => setPasswordOpen(false)}>
         <form

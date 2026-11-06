@@ -20,6 +20,13 @@ El archivo [`public/exercises.json`](../public/exercises.json) se genera con [`s
 
 Las imágenes no están en este repositorio. La app las carga desde el repositorio original, a través de `raw.githubusercontent.com`, y el service worker guarda las ya vistas. La licencia es la que declara ese repositorio; no he revisado el origen de cada foto por separado.
 
+## Avatares: Fluent Emoji
+
+Las imágenes de los avatares son emojis 3D de **[Fluent Emoji](https://github.com/microsoft/fluentui-emoji)**, de Microsoft, bajo [licencia MIT](../data/fluentui-emoji.LICENSE).
+
+- **Versión usada:** rama `main`, descargada en noviembre de 2026. Último commit entonces: [`1ffb34c`](https://github.com/microsoft/fluentui-emoji/commit/1ffb34c752ecf5d402f04cfb4b392c77f57c54bc).
+- **Qué cambia este proyecto:** [`scripts/make_avatars.py`](../scripts/make_avatars.py) las reduce a 160 px y las convierte a WebP, en [`public/avatares/`](../public/avatares). Los nombres de gym son de este proyecto ([`shared/avatars.ts`](../shared/avatars.ts)).
+
 ## Librerías
 
 | Librería | Uso | Licencia |

@@ -130,6 +130,14 @@ Necesitas una cuenta gratuita de [Cloudflare](https://dash.cloudflare.com/sign-u
 
 No cambies las claves VAPID una vez publicada la app, porque dejarían de funcionar las notificaciones ya activadas.
 
+## Regenerar los avatares
+
+```bash
+python scripts/make_avatars.py
+```
+
+Descarga las imágenes de Fluent Emoji y las deja en `public/avatares/`. Para añadir uno, añádelo también a `shared/avatars.ts`; un test comprueba que ambas listas coincidan.
+
 ## Regenerar el catálogo de ejercicios
 
 ```bash

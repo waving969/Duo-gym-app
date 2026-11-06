@@ -19,7 +19,7 @@ Los tipos están en [`shared/types.ts`](../shared/types.ts).
 | `GET` | `/invite/:token` | Comprueba una invitación |
 | `POST` | `/invite/:token` | Crea la cuenta con `displayName`, `username` y `password` |
 | `GET` | `/me` | Perfil propio |
-| `PATCH` | `/me` | Cambia nombre, color, objetivos y permisos de privacidad |
+| `PATCH` | `/me` | Cambia nombre, color, avatar, objetivos y permisos de privacidad |
 | `GET` | `/me/export` | Descarga todos los datos propios |
 
 ## Peso corporal y calendario

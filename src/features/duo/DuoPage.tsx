@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
+import { avatarName } from "../../../shared/avatars";
 import { weekStreak } from "../../../shared/stats";
 import { trainingTotals, weeklyVisits } from "../../../shared/training";
 import type { PartnerData, User } from "../../../shared/types";
 import { formatKg, formatShortDateYear } from "../../lib/format";
 import { useToday } from "../../lib/useToday";
+import { Avatar } from "../../ui/Avatar";
 import { Button } from "../../ui/Button";
 import { Segmented } from "../../ui/controls";
 import { useUser } from "../auth/useMe";
@@ -55,8 +57,14 @@ function ComparePanel({ me, data }: { me: User; data: PartnerData }) {
               <th scope="col">
                 <span className="sr-only">Dato</span>
               </th>
-              <th scope="col">Tú</th>
-              <th scope="col">{name}</th>
+              <th scope="col">
+                <Avatar avatar={me.avatar} name={me.displayName} accent={me.accent} size={36} className="compare__avatar" />
+                Tú
+              </th>
+              <th scope="col">
+                <Avatar avatar={data.partner.avatar} name={name} accent={data.partner.accent} size={36} className="compare__avatar" />
+                {name}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -171,11 +179,18 @@ export function DuoPage() {
 
   return (
     <>
-      <header className="page__header">
-        <h1 className="page__title">Tú y {name}</h1>
+      <header className="duo-head">
+        <div className="duo-head__avatars">
+          <Avatar avatar={me.avatar} name={me.displayName} accent={me.accent} size={56} />
+          <Avatar avatar={data.partner.avatar} name={name} accent={data.partner.accent} size={56} />
+        </div>
+        <div>
+          <h1 className="page__title">Tú y {name}</h1>
+          {avatarName(data.partner.avatar) && <p className="page__subtitle">{avatarName(data.partner.avatar)}</p>}
+        </div>
       </header>
       <Segmented id="duo-tabs" label="Sección" value={tab} options={options as readonly { id: Tab; label: string }[]} onChange={setTab} />
-      {tab === "chat" && <ChatPanel partnerName={name} />}
+      {tab === "chat" && <ChatPanel partner={data.partner} />}
       {tab === "compare" && <ComparePanel me={me} data={data} />}
       {tab === "partner" && <PartnerPanel data={data} />}
     </>

@@ -16,7 +16,7 @@ La hice para mi pareja y para mí al volver al gym: las apps de este tipo limita
 - **Rutinas personalizables:** incluye una rutina de aclimatación de 3 días y un catálogo de 855 ejercicios con nombres en español.
 - **Progreso:** calendario, rachas, evolución por ejercicio, cardio y peso corporal.
 - **Sesión persistente:** se entra una vez y la sesión se renueva sola al usar la app.
-- **Tema y color:** modo automático, claro u oscuro, y color propio para cada persona.
+- **Personalización:** 32 avatares con nombres de gym (Panda Proteína, T-Rex Día de Brazo…), color propio y tema automático, claro u oscuro.
 
 ## Tecnología
 
@@ -74,6 +74,7 @@ Proyecto personal en desarrollo. Queda por validar el comportamiento de las noti
 ## Créditos
 
 - Ejercicios e imágenes: [free-exercise-db](https://github.com/yuhonas/free-exercise-db), de [yuhonas](https://github.com/yuhonas), de dominio público ([Unlicense](data/free-exercise-db.LICENSE.md)). La traducción de los nombres al español es de este proyecto.
+- Avatares: [Fluent Emoji](https://github.com/microsoft/fluentui-emoji), de Microsoft ([MIT](data/fluentui-emoji.LICENSE)).
 - Desarrollado con ayuda de [Claude Code](https://claude.com/claude-code).
 
 Más detalle en [Créditos](docs/creditos.md).

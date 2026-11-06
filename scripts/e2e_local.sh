@@ -95,6 +95,10 @@ check "cardio marca el calendario" 1 "$(curl -s -b $T/a $B/api/visits | grep -c 
 check "tipo de cardio inventado rechazado" 400 "$(code -b $T/a -X PUT $B/api/cardio/cardio-prueba-2 -H "$O" -H "$J" -d '{"date":"2026-11-04","kind":"nadar","minutes":15}')"
 check "B no puede tocar el cardio de A" 404 "$(code -b $T/b -X PUT $B/api/cardio/cardio-prueba-1 -H "$O" -H "$J" -d '{"date":"2026-11-04","kind":"bici","minutes":99}')"
 check "la exportación incluye los entrenos" 1 "$(curl -s -b $T/a $B/api/me/export | grep -c 'Prensa')"
+check "avatar válido" 1 "$(curl -s -b $T/a -X PATCH $B/api/me -H "$O" -H "$J" -d '{"avatar":"panda"}' | grep -c '"avatar":"panda"')"
+check "la pareja ve el avatar" 1 "$(curl -s -b $T/b $B/api/partner | grep -c '"avatar":"panda"')"
+check "avatar inventado rechazado" 400 "$(code -b $T/a -X PATCH $B/api/me -H "$O" -H "$J" -d '{"avatar":"../../secreto"}')"
+check "se puede quitar el avatar" 1 "$(curl -s -b $T/a -X PATCH $B/api/me -H "$O" -H "$J" -d '{"avatar":null}' | grep -c '"avatar":null')"
 check "push: destino falso rechazado" 400 "$(code -b $T/a -X POST $B/api/push/subscribe -H "$O" -H "$J" -d '{"endpoint":"https://malo.example/x","keys":{"p256dh":"a","auth":"b"}}')"
 
 check "otra web no puede escribir" 403 "$(code -b $T/a -X PUT $B/api/visits/2026-11-03 -H 'Origin: https://malo.example')"

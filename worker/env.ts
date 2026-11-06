@@ -16,6 +16,7 @@ export interface UserRow {
   share_workouts: number;
   share_weight: number;
   routines_seeded: number;
+  avatar: string | null;
 }
 
 export interface AppEnv {

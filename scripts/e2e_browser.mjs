@@ -230,6 +230,24 @@ check("añade el ejercicio a la rutina", added.length === 6, String(added.length
 await page.goto(`${BASE}/perfil`, { waitUntil: "networkidle0" });
 await wait(800);
 await page.screenshot({ path: `${OUT}19-perfil.png`, fullPage: true });
+await clickText(page, "Cambiar avatar");
+await wait(700);
+await shot(page, "22-avatares");
+check("hay selector de avatares", (await text(page)).includes("Unicornio Gains"));
+const pick = await page.evaluateHandle(() => [...document.querySelectorAll(".avatar-option")].find((b) => b.innerText.includes("Hámster en la Cinta")));
+await pick.click();
+await wait(900);
+await shot(page, "23-avatar-elegido");
+check("el avatar elegido muestra su nombre", (await page.$eval(".avatar-picker__who strong", (e) => e.textContent)) === "Hámster en la Cinta");
+await clickText(page, "Listo");
+await wait(500);
+check("el perfil muestra el nombre del avatar", (await page.$eval(".profile-head", (e) => e.innerText)).includes("Hámster en la Cinta"));
+await page.reload({ waitUntil: "networkidle0" });
+await wait(500);
+check("el avatar se conserva", (await page.$eval(".profile-head img", (e) => e.getAttribute("src"))).includes("hamster"));
+await page2.reload({ waitUntil: "networkidle0" });
+await wait(1500);
+check("la pareja ve el avatar nuevo", await page2.evaluate(async () => (await (await fetch("/api/partner")).json()).partner.avatar === "hamster"));
 check("privacidad visible", (await text(page)).includes("qué ve tu pareja"));
 
 // Cerrar sesión borra el dispositivo

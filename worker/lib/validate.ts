@@ -88,5 +88,6 @@ export function toPublicUser(row: UserRow): User {
     shareCalendar: !!row.share_calendar,
     shareWorkouts: !!row.share_workouts,
     shareWeight: !!row.share_weight,
+    avatar: row.avatar,
   };
 }

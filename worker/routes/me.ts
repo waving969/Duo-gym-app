@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { isAvatarId } from "../../shared/avatars";
 import { ACCENTS, LIMITS } from "../../shared/types";
 import type { AppEnv, UserRow } from "../env";
 import { requireAuth } from "../lib/session";
@@ -42,13 +43,17 @@ me.patch("/", async (c) => {
     next.weekly_goal = g as number;
   }
 
+  if (body.avatar !== undefined) {
+    if (body.avatar !== null && !isAvatarId(body.avatar)) throw badRequest("Avatar no válido");
+    next.avatar = body.avatar;
+  }
   if (typeof body.shareCalendar === "boolean") next.share_calendar = body.shareCalendar ? 1 : 0;
   if (typeof body.shareWorkouts === "boolean") next.share_workouts = body.shareWorkouts ? 1 : 0;
   if (typeof body.shareWeight === "boolean") next.share_weight = body.shareWeight ? 1 : 0;
 
   await c.env.DB.prepare(
     `UPDATE users SET display_name = ?, accent = ?, height_cm = ?, goal_grams = ?, weekly_goal = ?,
-       share_calendar = ?, share_workouts = ?, share_weight = ? WHERE id = ?`
+       share_calendar = ?, share_workouts = ?, share_weight = ?, avatar = ? WHERE id = ?`
   )
     .bind(
       next.display_name,
@@ -59,6 +64,7 @@ me.patch("/", async (c) => {
       next.share_calendar,
       next.share_workouts,
       next.share_weight,
+      next.avatar,
       user.id
     )
     .run();

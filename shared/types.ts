@@ -14,6 +14,7 @@ export interface User {
   shareCalendar: boolean;
   shareWorkouts: boolean;
   shareWeight: boolean;
+  avatar: string | null;
 }
 
 export interface WeightEntry {
@@ -30,6 +31,7 @@ export interface ProfilePatch {
   shareCalendar?: boolean;
   shareWorkouts?: boolean;
   shareWeight?: boolean;
+  avatar?: string | null;
 }
 
 export const LIMITS = {
@@ -162,6 +164,7 @@ export interface Partner {
   id: string;
   displayName: string;
   accent: Accent;
+  avatar: string | null;
   weeklyGoal: number;
 }
 

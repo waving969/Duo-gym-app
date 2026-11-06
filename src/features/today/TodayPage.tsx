@@ -6,6 +6,7 @@ import { countedWorkouts, doneCount, nextRoutine } from "../../../shared/trainin
 import { NUDGES } from "../../../shared/types";
 import { formatDelta, formatKg, formatLongDate, plural } from "../../lib/format";
 import { useToday } from "../../lib/useToday";
+import { Avatar } from "../../ui/Avatar";
 import { Button } from "../../ui/Button";
 import { CheckIcon } from "../../ui/icons";
 import { useToast } from "../../ui/Toast";
@@ -42,8 +43,8 @@ function PartnerStrip() {
   return (
     <section className="partner-strip" aria-label={`Estado de ${name}`}>
       <Link to="/duo" className="partner-strip__info">
-        <span className="partner-strip__avatar" data-swatch={data.partner.accent}>
-          {name.charAt(0).toUpperCase()}
+        <span className="partner-strip__avatar">
+          <Avatar avatar={data.partner.avatar} name={name} accent={data.partner.accent} size={48} />
           {unread > 0 && <span className="badge">{unread}</span>}
         </span>
         <span className="partner-strip__text">
@@ -91,9 +92,14 @@ export function TodayPage() {
 
   return (
     <>
-      <header className="page__header">
-        <p className="page__eyebrow">{formatLongDate(today)}</p>
-        <h1 className="page__title">Hola, {user.displayName}</h1>
+      <header className="page__header page__header--row">
+        <div>
+          <p className="page__eyebrow">{formatLongDate(today)}</p>
+          <h1 className="page__title">Hola, {user.displayName}</h1>
+        </div>
+        <Link to="/perfil" aria-label="Tu perfil">
+          <Avatar avatar={user.avatar} name={user.displayName} accent={user.accent} size={52} />
+        </Link>
       </header>
 
       <PartnerStrip />

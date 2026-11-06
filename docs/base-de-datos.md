@@ -25,6 +25,7 @@ erDiagram
         int share_calendar
         int share_workouts
         int share_weight
+        text avatar
     }
     sessions {
         text token_hash PK

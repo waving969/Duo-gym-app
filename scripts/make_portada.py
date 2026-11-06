@@ -20,6 +20,7 @@ SHOTS = {
     "13-ejercicios": "evolucion-ejercicio",
     "18-busqueda": "buscador-ejercicios",
     "15-peso": "peso",
+    "22-avatares": "avatares",
 }
 for source, name in SHOTS.items():
     copyfile(SRC / f"{source}.png", OUT / f"{name}.png")

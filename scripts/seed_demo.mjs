@@ -36,8 +36,8 @@ const alex = client();
 const sam = client();
 await alex("POST", `/api/invite/${invite()}`, { displayName: "Alex", username: "alex", password: "demo-local-123" });
 await sam("POST", `/api/invite/${invite()}`, { displayName: "Sam", username: "sam", password: "demo-local-456" });
-await alex("PATCH", "/api/me", { accent: "lima", goalKg: 72 });
-await sam("PATCH", "/api/me", { accent: "coral", shareWeight: true });
+await alex("PATCH", "/api/me", { accent: "lima", goalKg: 72, avatar: "panda" });
+await sam("PATCH", "/api/me", { accent: "coral", shareWeight: true, avatar: "trex" });
 
 const BASE_KG = { maquina: 30, polea: 25, mancuernas: 8, barra: 20, corporal: 0 };
 const CARDIO = ["cinta", "bici", "eliptica"];

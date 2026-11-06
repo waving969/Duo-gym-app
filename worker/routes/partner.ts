@@ -15,6 +15,7 @@ const toPartner = (row: UserRow): Partner => ({
   id: row.id,
   displayName: row.display_name,
   accent: row.accent as Partner["accent"],
+  avatar: row.avatar,
   weeklyGoal: row.weekly_goal,
 });
 
