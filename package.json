@@ -40,5 +40,6 @@
     "vitest": "^5.1.0",
     "wrangler": "^4"
   },
-  "description": "App web para que dos personas lleven juntas su progreso en el gym: rutinas, pesos, cardio, mensajes y notificaciones."
+  "description": "App web para que dos personas lleven juntas su progreso en el gym: rutinas, pesos, cardio, mensajes y notificaciones.",
+  "license": "MIT"
 }

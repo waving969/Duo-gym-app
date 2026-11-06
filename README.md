@@ -76,3 +76,7 @@ Proyecto personal en desarrollo. Queda por validar el comportamiento de las noti
 - Desarrollado con ayuda de [Claude Code](https://claude.com/claude-code).
 
 Más detalle en [Créditos](docs/creditos.md).
+
+## Licencia
+
+El código de este proyecto está bajo la licencia [MIT](LICENSE). Los datos, librerías y fuentes de terceros conservan sus propias licencias, indicadas en [Créditos](docs/creditos.md).
